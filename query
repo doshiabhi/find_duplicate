@@ -1,0 +1,8 @@
+*********ranking and then finding rank<>1****************
+
+select user_id, user_name, email
+from(
+select *,
+RANK() over(partition by user_name ORDER BY user_id) as rank_user
+from users) x
+where x.rank_user <>1
